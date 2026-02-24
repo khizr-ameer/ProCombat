@@ -1,0 +1,265 @@
+/* ============================================================
+   PROCOMBAT — Our Story + Why Choose Us + Certifications
+   ============================================================ */
+
+/* ── OUR STORY ──────────────────────────────────────────── */
+.pc-story {
+  padding: var(--space-20) 0;
+  background: var(--color-white);
+}
+
+.pc-story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.pc-story__content { }
+
+.pc-story__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-4);
+}
+
+.pc-story__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-6);
+}
+
+.pc-story__title span {
+  color: var(--color-primary);
+}
+
+.pc-story__text {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+  line-height: var(--leading-loose);
+}
+
+.pc-story__text p + p {
+  margin-top: var(--space-4);
+}
+
+.pc-story__stats {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.pc-story__stat-num {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-primary);
+  display: block;
+  line-height: 1;
+}
+
+.pc-story__stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: var(--space-1);
+}
+
+.pc-story__image {
+  position: relative;
+}
+
+.pc-story__image img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  box-shadow: var(--shadow-xl);
+}
+
+.pc-story__image-badge {
+  position: absolute;
+  bottom: -var(--space-6);
+  left: -var(--space-6);
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-5);
+  margin-top: var(--space-3);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-red);
+}
+
+.pc-story__image-badge strong {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  display: block;
+  line-height: 1;
+}
+
+.pc-story__image-badge span {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  opacity: 0.85;
+  margin-top: 2px;
+  display: block;
+}
+
+/* ── WHY CHOOSE US ──────────────────────────────────────── */
+.pc-why {
+  padding: var(--space-20) 0;
+  background: var(--color-surface);
+}
+
+.pc-why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.pc-why__card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pc-why__card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.pc-why__icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(200,16,46,0.08);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: var(--transition-base);
+  flex-shrink: 0;
+}
+
+.pc-why__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pc-why__card:hover .pc-why__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.pc-why__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pc-why__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+/* ── CERTIFICATIONS ─────────────────────────────────────── */
+.pc-certs {
+  padding: var(--space-16) 0;
+  background: var(--color-secondary);
+}
+
+.pc-section-header--light .pc-section-title {
+  color: var(--color-white);
+}
+
+.pc-section-header--light .pc-section-title span {
+  color: var(--color-accent);
+}
+
+.pc-certs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.pc-certs__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  transition: var(--transition-fast);
+}
+
+.pc-certs__item:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--color-accent);
+}
+
+.pc-certs__badge {
+  width: 52px;
+  height: 52px;
+  background: rgba(26, 86, 240, 0.12);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.pc-certs__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+}
+
+.pc-certs__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.55);
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .pc-why__grid { grid-template-columns: repeat(2, 1fr); }
+  .pc-certs__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .pc-story__grid { grid-template-columns: 1fr; }
+  .pc-story__image { order: -1; }
+  .pc-story__stats { gap: var(--space-5); }
+  .pc-why__grid { grid-template-columns: 1fr; }
+  .pc-certs__grid { grid-template-columns: 1fr; }
+}

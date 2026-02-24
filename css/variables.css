@@ -1,0 +1,116 @@
+/* ============================================================
+   PROCOMBAT — DESIGN TOKENS  v2.0
+   Theme: Minimal & Clean · Electric Blue / Cobalt
+   ============================================================ */
+
+:root {
+
+  /* ─── BRAND COLORS ─────────────────────────────────────── */
+  --color-primary:       #1A56F0;   /* Cobalt Blue — main CTA, accents */
+  --color-primary-dark:  #1240CC;   /* Hover state */
+  --color-primary-light: #3B72FF;   /* Lighter for highlights */
+  --color-primary-faint: #EEF2FF;   /* Tinted bg, subtle fills */
+
+  --color-secondary:     #0A0A0F;   /* Near Black — headings, navbar bg */
+  --color-secondary-mid: #16161E;   /* Dark panels, card hover */
+  --color-secondary-light:#22222E;  /* Borders on dark surfaces */
+
+  --color-accent:        #00C2FF;   /* Electric Cyan — badges, highlights */
+  --color-accent-dark:   #009ACC;   /* Hover state for cyan */
+
+  /* ─── NEUTRALS ──────────────────────────────────────────── */
+  --color-white:         #FFFFFF;
+  --color-bg:            #FFFFFF;
+  --color-surface:       #F8F9FC;   /* Barely-there off-white */
+  --color-surface-2:     #F0F2F7;   /* Slightly deeper surface */
+
+  --color-border:        #E4E7EE;   /* Clean, cool-toned border */
+  --color-border-dark:   #C9CDD8;   /* Stronger border */
+
+  --color-text:          #0D0F14;   /* Near black — headings */
+  --color-text-body:     #333847;   /* Body text — cool dark */
+  --color-text-muted:    #6670859; /* Muted — captions, labels */
+  --color-text-light:    #9BA3B8;   /* Lightest — placeholders */
+
+  /* ─── FEEDBACK COLORS ───────────────────────────────────── */
+  --color-success:       #059669;
+  --color-warning:       #D97706;
+  --color-error:         #DC2626;
+  --color-info:          #1A56F0;
+
+  /* ─── TYPOGRAPHY ────────────────────────────────────────── */
+  --font-heading:  'Syne', 'Barlow Condensed', sans-serif;
+  --font-body:     'DM Sans', Arial, sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  --fw-regular:    400;
+  --fw-medium:     500;
+  --fw-semibold:   600;
+  --fw-bold:       700;
+  --fw-extrabold:  800;
+
+  --text-xs:    11px;
+  --text-sm:    13px;
+  --text-base:  15px;
+  --text-md:    17px;
+  --text-lg:    20px;
+  --text-xl:    24px;
+  --text-2xl:   30px;
+  --text-3xl:   38px;
+  --text-4xl:   48px;
+  --text-5xl:   64px;
+
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* ─── SPACING SCALE ─────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+
+  /* ─── BORDER RADIUS ─────────────────────────────────────── */
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ─── SHADOWS ────────────────────────────────────────────── */
+  --shadow-xs:   0 1px 2px rgba(13, 15, 20, 0.05);
+  --shadow-sm:   0 2px 6px rgba(13, 15, 20, 0.07);
+  --shadow-md:   0 4px 16px rgba(13, 15, 20, 0.09);
+  --shadow-lg:   0 8px 30px rgba(13, 15, 20, 0.12);
+  --shadow-xl:   0 16px 50px rgba(13, 15, 20, 0.16);
+  --shadow-blue: 0 4px 24px rgba(26, 86, 240, 0.22);  /* Blue glow for CTAs */
+
+  /* ─── TRANSITIONS ───────────────────────────────────────── */
+  --transition-fast:   all 0.15s ease;
+  --transition-base:   all 0.25s ease;
+  --transition-slow:   all 0.40s ease;
+  --transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ─── LAYOUT ─────────────────────────────────────────────── */
+  --container-max:    1280px;
+  --container-pad:    24px;
+  --navbar-height:    70px;
+  --topbar-height:    38px;
+
+  /* ─── Z-INDEX SCALE ─────────────────────────────────────── */
+  --z-base:     1;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+}

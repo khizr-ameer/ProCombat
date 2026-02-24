@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — ProCombat</title>
+  <meta name="description" content="Browse ProCombat's full range of combat sports gear. Custom manufacturing from Sialkot, Pakistan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components/header.css" />
+  <link rel="stylesheet" href="../css/components/footer.css" />
+  <style>
+    .page-wrap{padding-top:calc(var(--navbar-height) + var(--topbar-height))}
+    /* BANNER */
+    .cat-banner{position:relative;height:280px;background:var(--color-secondary);overflow:hidden;display:flex;align-items:flex-end}
+    .cat-banner__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25;transform:scale(1.04);transition:transform 6s ease}
+    .cat-banner:hover .cat-banner__bg{transform:scale(1)}
+    .cat-banner__ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,15,15,.92) 0%,rgba(15,15,15,.4) 60%,transparent 100%)}
+    .cat-banner__content{position:relative;z-index:1;width:100%;max-width:var(--container-max);margin:0 auto;padding:var(--space-8) var(--container-pad)}
+    .breadcrumb{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:rgba(255,255,255,.5);font-family:var(--font-body);margin-bottom:var(--space-3);flex-wrap:wrap}
+    .breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;transition:var(--transition-fast)}
+    .breadcrumb a:hover{color:var(--color-primary)}
+    .breadcrumb span{color:rgba(255,255,255,.3);font-size:10px}
+    .cat-banner__title{font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.8rem);font-weight:800;color:#fff;letter-spacing:.02em;line-height:1;text-transform:uppercase;margin:0 0 var(--space-2)}
+    .cat-banner__desc{font-size:var(--text-sm);color:rgba(255,255,255,.6);font-family:var(--font-body);max-width:500px}
+    .cat-banner__count{display:inline-block;margin-top:var(--space-3);background:var(--color-primary);color:#fff;font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:var(--radius-sm)}
+    /* SHOP LAYOUT */
+    .shop-wrap{max-width:var(--container-max);margin:0 auto;padding:var(--space-10) var(--container-pad);display:grid;grid-template-columns:260px 1fr;gap:var(--space-8);align-items:start}
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:calc(var(--navbar-height) + var(--topbar-height) + 20px)}
+    .sb-block{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:var(--space-4)}
+    .sb-head{padding:var(--space-4) var(--space-5);background:var(--color-secondary);color:#fff;font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:var(--space-2)}
+    .sb-head svg{width:14px;height:14px;opacity:.7;flex-shrink:0}
+    .sb-cats{padding:var(--space-3) 0}
+    .sb-cat{}
+    .sb-cat-btn{display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) var(--space-5);font-size:var(--text-sm);color:var(--color-text-body);text-decoration:none;transition:var(--transition-fast);font-family:var(--font-body);font-weight:500;cursor:pointer;border:none;background:none;width:100%;text-align:left}
+    .sb-cat-btn:hover{color:var(--color-primary);background:rgba(232,80,10,.04)}
+    .sb-cat-btn.active{color:var(--color-primary);font-weight:600;background:rgba(232,80,10,.07)}
+    .sb-chevron{width:14px;height:14px;transition:transform .2s;opacity:.4;flex-shrink:0}
+    .sb-cat.open .sb-chevron{transform:rotate(90deg);opacity:1}
+    .sb-subs{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--color-surface)}
+    .sb-cat.open .sb-subs{max-height:600px}
+    .sb-sub{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-5) var(--space-2) var(--space-8);font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none;transition:var(--transition-fast);font-family:var(--font-body)}
+    .sb-sub::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--color-border-dark);flex-shrink:0;transition:var(--transition-fast)}
+    .sb-sub:hover{color:var(--color-primary)}
+    .sb-sub:hover::before{background:var(--color-primary)}
+    .sb-sub.active{color:var(--color-primary);font-weight:600}
+    .sb-sub.active::before{background:var(--color-primary)}
+    .sb-cta{background:var(--color-secondary);border-radius:var(--radius-lg);padding:var(--space-6);text-align:center}
+    .sb-cta h4{font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;color:#fff;text-transform:uppercase;margin:0 0 var(--space-2)}
+    .sb-cta p{font-size:var(--text-xs);color:rgba(255,255,255,.6);margin:0 0 var(--space-4)}
+    .sb-cta-btn{display:block;width:100%;background:var(--color-primary);color:#fff;font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);text-decoration:none;transition:var(--transition-fast);border:none;cursor:pointer}
+    .sb-cta-btn:hover{background:var(--color-primary-dark);transform:translateY(-1px)}
+    /* TOOLBAR */
+    .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);gap:var(--space-3);flex-wrap:wrap}
+    .count-text{font-size:var(--text-sm);color:var(--color-text-muted);font-family:var(--font-body)}
+    .count-text strong{color:var(--color-text)}
+    .view-toggle{display:flex;gap:var(--space-1)}
+    .vbtn{width:34px;height:34px;border:1px solid var(--color-border);background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition-fast);color:var(--color-text-muted)}
+    .vbtn:hover{border-color:var(--color-primary);color:var(--color-primary)}
+    .vbtn.active{background:var(--color-secondary);border-color:var(--color-secondary);color:#fff}
+    .vbtn svg{width:15px;height:15px}
+    .mobile-filter-btn{display:none;align-items:center;gap:var(--space-2);background:var(--color-secondary);color:#fff;font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);border:none;cursor:pointer}
+    .mobile-filter-btn svg{width:16px;height:16px}
+    /* GRID */
+    .p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)}
+    .p-grid.c2{grid-template-columns:repeat(2,1fr)}
+    .p-grid.c4{grid-template-columns:repeat(4,1fr)}
+    .p-list{display:flex;flex-direction:column;gap:var(--space-4)}
+    /* CARD */
+    .pc{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition-base);position:relative}
+    .pc:hover{border-color:var(--color-primary);box-shadow:var(--shadow-lg),0 0 0 1px var(--color-primary);transform:translateY(-3px)}
+    .pc-img-w{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--color-surface)}
+    .pc-img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .pc:hover .pc-img{transform:scale(1.06)}
+    .pc-badge{position:absolute;top:var(--space-3);left:var(--space-3);background:var(--color-primary);color:#fff;font-family:var(--font-heading);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:var(--radius-sm);z-index:2}
+    .pc-badge.kids{background:var(--color-accent);color:var(--color-secondary)}
+    .pc-ov{position:absolute;inset:0;background:rgba(15,15,15,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--transition-base)}
+    .pc:hover .pc-ov{opacity:1}
+    .pc-ov-btn{background:#fff;color:var(--color-secondary);font-family:var(--font-heading);font-size:var(--text-sm);font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:var(--space-3) var(--space-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:var(--transition-fast);text-decoration:none;display:inline-block}
+    .pc-ov-btn:hover{background:var(--color-primary);color:#fff}
+    .pc-body{padding:var(--space-4)}
+    .pc-cat{font-size:11px;color:var(--color-primary);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-body);margin-bottom:var(--space-1);text-decoration:none;display:block}
+    .pc-name{font-family:var(--font-heading);font-size:var(--text-md);font-weight:700;color:var(--color-text);text-transform:uppercase;line-height:1.2;margin-bottom:var(--space-4);text-decoration:none;display:block}
+    .pc-name:hover{color:var(--color-primary)}
+    .pc-foot{display:flex;gap:var(--space-2);border-top:1px solid var(--color-border);padding-top:var(--space-3)}
+    .btn-rm{flex:1;padding:var(--space-2) var(--space-3);background:var(--color-secondary);color:#fff;font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:none;border-radius:var(--radius-md);cursor:pointer;text-decoration:none;text-align:center;display:block;transition:var(--transition-fast)}
+    .btn-rm:hover{background:var(--color-secondary-mid)}
+    .btn-qt{flex:1;padding:var(--space-2) var(--space-3);background:transparent;color:var(--color-primary);font-family:var(--font-heading);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:1.5px solid var(--color-primary);border-radius:var(--radius-md);cursor:pointer;text-decoration:none;text-align:center;display:block;transition:var(--transition-fast)}
+    .btn-qt:hover{background:var(--color-primary);color:#fff}
+    /* LIST CARD */
+    .plc{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:180px 1fr;transition:var(--transition-base)}
+    .plc:hover{border-color:var(--color-primary);box-shadow:var(--shadow-md),0 0 0 1px var(--color-primary)}
+    .plc-iw{position:relative;background:var(--color-surface);overflow:hidden}
+    .plc-img{width:100%;height:100%;object-fit:cover;min-height:160px}
+    .plc-body{padding:var(--space-5);display:flex;flex-direction:column}
+    .plc-name{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;color:var(--color-text);text-transform:uppercase;line-height:1.1;margin-bottom:var(--space-2);text-decoration:none;display:block}
+    .plc-name:hover{color:var(--color-primary)}
+    .plc-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;margin-bottom:var(--space-4);flex:1}
+    .plc-foot{display:flex;gap:var(--space-2)}
+    /* EMPTY */
+    .empty{grid-column:1/-1;text-align:center;padding:var(--space-20) var(--space-8)}
+    .empty svg{width:48px;height:48px;color:var(--color-text-light);margin:0 auto var(--space-4);display:block}
+    .empty h3{font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;color:var(--color-text);margin:0 0 var(--space-2)}
+    .empty p{font-size:var(--text-sm);color:var(--color-text-muted);margin:0 0 var(--space-5)}
+    /* PAGINATION */
+    .pgn-wrap{margin-top:var(--space-8);display:flex;justify-content:center}
+    .pgn{display:flex;gap:var(--space-2)}
+    .pgb{width:38px;height:38px;border:1px solid var(--color-border);background:#fff;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-family:var(--font-body);font-weight:500;cursor:pointer;transition:var(--transition-fast);color:var(--color-text-body)}
+    .pgb:hover{border-color:var(--color-primary);color:var(--color-primary)}
+    .pgb.active{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+    /* RESPONSIVE */
+    @media(max-width:1024px){.shop-wrap{grid-template-columns:220px 1fr}.p-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.shop-wrap{grid-template-columns:1fr}.sidebar{position:static;display:none}.sidebar.open{display:block}.mobile-filter-btn{display:flex}.p-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-3)}.cat-banner{height:200px}.plc{grid-template-columns:120px 1fr}.plc-img{min-height:120px}}
+    @media(max-width:480px){.p-grid{grid-template-columns:1fr}.plc{grid-template-columns:100px 1fr}}
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <main id="main-content">
+    <div class="cat-banner" id="cat-banner">
+      <div class="cat-banner__bg" id="banner-bg"></div>
+      <div class="cat-banner__ov"></div>
+      <div class="cat-banner__content">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+        <h1 class="cat-banner__title" id="banner-title">All Products</h1>
+        <p class="cat-banner__desc" id="banner-desc"></p>
+        <span class="cat-banner__count" id="banner-count">0 Products</span>
+      </div>
+    </div>
+    <div class="shop-wrap">
+      <aside class="sidebar" id="sidebar">
+        <div class="sb-block">
+          <div class="sb-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            Categories
+          </div>
+          <div class="sb-cats" id="sb-cats"></div>
+        </div>
+        <div class="sb-cta">
+          <h4>Get a Quote</h4>
+          <p>Custom orders from 10 pieces. Full branding available.</p>
+          <a href="/pages/contact.html" class="sb-cta-btn">Request Quote</a>
+        </div>
+      </aside>
+      <div>
+        <div class="toolbar">
+          <button class="mobile-filter-btn" onclick="toggleSidebar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            Filter
+          </button>
+          <div class="count-text" id="count-text"></div>
+          <div class="view-toggle">
+            <button class="vbtn active" id="btn-grid" onclick="setView('grid')" title="Grid">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </button>
+            <button class="vbtn" id="btn-list" onclick="setView('list')" title="List">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="products-con" class="p-grid"></div>
+        <div class="pgn-wrap" id="pgn-wrap"></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="module">
+import Header from '../components/header.js';
+import Footer from '../components/footer.js';
+import { CATEGORIES, findBySlug } from '../js/data/categories.js';
+import { ALL_PRODUCTS } from '../js/data/products.js';
+
+Header.init('body');
+Footer.init('body');
+
+const PER_PAGE = 12;
+let curPage = 1, curView = 'grid', filtered = [];
+
+buildSidebar();
+loadFromURL();
+
+function loadFromURL() {
+  const slug = new URLSearchParams(window.location.search).get('cat') || 'all';
+  showCat(slug);
+}
+
+function buildSidebar() {
+  const c = document.getElementById('sb-cats');
+  c.innerHTML = `<div class="sb-cat"><a class="sb-cat-btn" id="cat-all" href="?cat=all" onclick="return navTo('all')">All Products</a></div>`;
+  CATEGORIES.forEach(cat => {
+    const el = document.createElement('div');
+    el.className = 'sb-cat'; el.id = 'ci-' + cat.slug;
+    el.innerHTML = `
+      <button class="sb-cat-btn" id="cl-${cat.slug}" onclick="toggleCat('${cat.slug}');navTo('${cat.slug}');return false">
+        ${cat.label}
+        <svg class="sb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="sb-subs">${cat.subcategories.map(s =>
+        `<a class="sb-sub" id="ss-${s.slug}" href="?cat=${s.slug}" onclick="return navTo('${s.slug}')">${s.label}</a>`
+      ).join('')}</div>`;
+    c.appendChild(el);
+  });
+}
+
+window.navTo = function(slug) {
+  history.pushState({}, '', '?cat=' + slug);
+  showCat(slug); return false;
+};
+window.toggleCat = function(slug) { document.getElementById('ci-' + slug)?.classList.toggle('open'); };
+window.toggleSidebar = function() { document.getElementById('sidebar').classList.toggle('open'); };
+
+function showCat(slug) {
+  curPage = 1;
+  const isAll = !slug || slug === 'all';
+  let catInfo = null, parentCat = null, prods = [];
+
+  if (isAll) {
+    prods = ALL_PRODUCTS;
+  } else {
+    catInfo = findBySlug(slug);
+    if (catInfo?.isParent) {
+      const subSlugs = catInfo.subcategories.map(s => s.slug);
+      prods = ALL_PRODUCTS.filter(p => p.category === slug || subSlugs.includes(p.category));
+      parentCat = catInfo;
+    } else if (catInfo) {
+      prods = ALL_PRODUCTS.filter(p => p.category === slug);
+      parentCat = catInfo.parent;
+    } else {
+      prods = ALL_PRODUCTS;
+    }
+  }
+
+  filtered = prods;
+  updateBanner(catInfo, parentCat, prods.length, slug, isAll);
+  updateSidebarActive(slug);
+  render(); renderPgn();
+}
+
+function updateBanner(catInfo, parentCat, count, slug, isAll) {
+  const name = isAll ? 'All Products' : (catInfo?.label || 'Products');
+  const desc = isAll ? 'Browse our complete range of combat sports and athleisure wear.' : (catInfo?.description || '');
+  document.getElementById('banner-title').textContent = name;
+  document.getElementById('banner-desc').textContent = desc;
+  document.getElementById('banner-count').textContent = count + ' Product' + (count !== 1 ? 's' : '');
+  const bi = catInfo?.bannerImage || (catInfo?.parent?.bannerImage);
+  if (bi) document.getElementById('banner-bg').style.backgroundImage = `url(${bi})`;
+
+  let bc = `<a href="/">Home</a><span>›</span><a href="?cat=all" onclick="return navTo('all')">Products</a>`;
+  if (parentCat && !catInfo?.isParent) bc += `<span>›</span><a href="?cat=${parentCat.slug}" onclick="return navTo('${parentCat.slug}')">${parentCat.label}</a>`;
+  if (!isAll) bc += `<span>›</span><span>${name}</span>`;
+  document.getElementById('breadcrumb').innerHTML = bc;
+}
+
+function updateSidebarActive(slug) {
+  document.querySelectorAll('.sb-cat-btn,.sb-sub').forEach(e => e.classList.remove('active'));
+  if (slug === 'all' || !slug) { document.getElementById('cat-all')?.classList.add('active'); return; }
+  const pl = document.getElementById('cl-' + slug);
+  if (pl) { pl.classList.add('active'); document.getElementById('ci-' + slug)?.classList.add('open'); return; }
+  const sl = document.getElementById('ss-' + slug);
+  if (sl) {
+    sl.classList.add('active');
+    CATEGORIES.forEach(cat => {
+      if (cat.subcategories.some(s => s.slug === slug)) {
+        document.getElementById('ci-' + cat.slug)?.classList.add('open');
+        document.getElementById('cl-' + cat.slug)?.classList.add('active');
+      }
+    });
+  }
+}
+
+function render() {
+  const con = document.getElementById('products-con');
+  const ct = document.getElementById('count-text');
+  const start = (curPage - 1) * PER_PAGE;
+  const page = filtered.slice(start, start + PER_PAGE);
+  con.className = curView === 'list' ? 'p-list' : 'p-grid';
+  ct.innerHTML = `Showing <strong>${filtered.length ? start + 1 : 0}–${Math.min(start + page.length, filtered.length)}</strong> of <strong>${filtered.length}</strong> products`;
+
+  if (!filtered.length) {
+    con.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <h3>No products found</h3><p>No products in this category yet.</p>
+      <a href="?cat=all" onclick="return navTo('all')" class="btn-qt" style="display:inline-block;padding:10px 24px">View All</a>
+    </div>`;
+    return;
+  }
+  con.innerHTML = page.map(p => curView === 'list' ? listCard(p) : gridCard(p)).join('');
+}
+
+function gridCard(p) {
+  const cat = findBySlug(p.category);
+  const catLabel = cat?.label || p.category;
+  const badge = p.badge ? `<div class="pc-badge ${p.badge==='Kids'?'kids':''}">${p.badge}</div>` : '';
+  return `<div class="pc">
+    <div class="pc-img-w">${badge}<img class="pc-img" src="${p.image}" alt="${p.name}" loading="lazy"/>
+      <div class="pc-ov"><a href="product-detail.html?id=${p.id}" class="pc-ov-btn">View Details</a></div>
+    </div>
+    <div class="pc-body">
+      <a class="pc-cat" href="?cat=${p.category}" onclick="return navTo('${p.category}')">${catLabel}</a>
+      <a class="pc-name" href="product-detail.html?id=${p.id}">${p.name}</a>
+      <div class="pc-foot">
+        <a class="btn-rm" href="product-detail.html?id=${p.id}">Details</a>
+        <a class="btn-qt" href="contact.html?product=${p.id}">Get Quote</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function listCard(p) {
+  const cat = findBySlug(p.category);
+  const catLabel = cat?.label || p.category;
+  const badge = p.badge ? `<div class="pc-badge ${p.badge==='Kids'?'kids':''}">${p.badge}</div>` : '';
+  return `<div class="plc">
+    <div class="plc-iw">${badge}<img class="plc-img" src="${p.image}" alt="${p.name}" loading="lazy"/></div>
+    <div class="plc-body">
+      <a class="pc-cat" href="?cat=${p.category}" onclick="return navTo('${p.category}')">${catLabel}</a>
+      <a class="plc-name" href="product-detail.html?id=${p.id}">${p.name}</a>
+      <p class="plc-desc">${(p.description||'').substring(0,160)}...</p>
+      <div class="plc-foot">
+        <a class="btn-rm" href="product-detail.html?id=${p.id}">View Details</a>
+        <a class="btn-qt" href="contact.html?product=${p.id}">Get Quote</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderPgn() {
+  const w = document.getElementById('pgn-wrap');
+  const total = Math.ceil(filtered.length / PER_PAGE);
+  if (total <= 1) { w.innerHTML = ''; return; }
+  let h = '<div class="pgn">';
+  if (curPage > 1) h += `<button class="pgb" onclick="goPage(${curPage-1})">‹</button>`;
+  for (let i = 1; i <= total; i++) h += `<button class="pgb ${i===curPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+  if (curPage < total) h += `<button class="pgb" onclick="goPage(${curPage+1})">›</button>`;
+  h += '</div>'; w.innerHTML = h;
+}
+
+window.goPage = function(p) { curPage = p; render(); renderPgn(); scrollTo({top:300,behavior:'smooth'}); };
+window.setView = function(v) {
+  curView = v;
+  document.getElementById('btn-grid').classList.toggle('active', v==='grid');
+  document.getElementById('btn-list').classList.toggle('active', v==='list');
+  render();
+};
+window.addEventListener('popstate', loadFromURL);
+</script>
+</body>
+</html>
