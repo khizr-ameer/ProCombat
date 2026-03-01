@@ -14,7 +14,7 @@ export const NAV_LINKS = [
     href: '#',
     children: [
       { label: 'About Us',              href: '/pages/about.html' },
-      { label: 'The ProCombat Difference', href: '/pages/about.html#difference' }
+      { label: 'The ProCombat Difference', href: '/pages/proCombat-difference.html' }
     ]
   },
   {

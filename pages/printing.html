@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Printing — ProCombat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/variables.css"/>
+  <link rel="stylesheet" href="../css/base.css"/>
+  <link rel="stylesheet" href="../css/components/header.css"/>
+  <link rel="stylesheet" href="../css/components/footer.css"/>
+  <style>
+    /* ── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0A0A0F;
+      --dark2:   #13131C;
+      --pri:     #1A56F0;
+      --pri-lt:  #7b9fff;
+      --pri-fa:  rgba(26,86,240,0.09);
+      --white:   #ffffff;
+      --surf:    #F5F6FA;
+      --bdr:     #E4E6EF;
+      --bdr2:    #D1D5E0;
+      --text:    #0C0E18;
+      --muted:   #64748B;
+      --body:    #374151;
+
+      --r-sm:  8px;  --r-md: 12px;  --r-lg: 16px;
+      --r-xl:  22px; --r-2xl: 30px; --r-pill: 999px;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; color: var(--body); background: var(--white); }
+    .wrap { padding-top: 108px; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      position: relative; overflow: hidden;
+      padding: 96px 0 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 65% 90% at 78% 55%, rgba(26,86,240,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 50% at 8% 85%, rgba(0,194,255,0.07) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid; grid-template-columns: 1fr 460px;
+      gap: 64px; align-items: center;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,86,240,0.15);
+      border: 1px solid rgba(26,86,240,0.35);
+      color: var(--pri-lt);
+      font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: var(--r-pill); margin-bottom: 20px;
+    }
+    .hero-pill .dot { width: 7px; height: 7px; background: var(--pri); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem); font-weight: 800;
+      color: #fff; text-transform: uppercase; line-height: .96;
+      margin-bottom: 22px;
+    }
+    .hero h1 em { color: var(--pri); font-style: normal; }
+    .hero-desc {
+      font-size: 15.5px; color: rgba(255,255,255,0.56); line-height: 1.8;
+      max-width: 500px; margin-bottom: 36px;
+    }
+    .hero-desc strong { color: rgba(255,255,255,.88); font-weight: 600; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pri); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      padding: 15px 36px; border-radius: var(--r-md);
+      text-decoration: none; transition: all .2s;
+      box-shadow: 0 4px 24px rgba(26,86,240,.4);
+    }
+    .btn-cta:hover { background: #1240CC; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,86,240,.4); }
+
+    /* Hero right: type icon grid */
+    .hero-types {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+    .ht {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-lg);
+      padding: 20px 14px 18px;
+      text-align: center; transition: all .25s; cursor: default;
+    }
+    .ht:hover { border-color: rgba(26,86,240,.5); background: rgba(26,86,240,.1); transform: translateY(-3px); }
+    .ht-icon {
+      width: 44px; height: 44px;
+      background: rgba(26,86,240,.16); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px; color: var(--pri);
+    }
+    .ht-icon svg { width: 19px; height: 19px; }
+    .ht span { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; color:rgba(255,255,255,.72); text-transform:uppercase; letter-spacing:.07em; display:block; line-height:1.3; }
+    .ht-wide { grid-column:span 3; padding:12px; }
+    .ht-wide span { color:rgba(255,255,255,.28); letter-spacing:.15em; font-size:11px; }
+
+    /* ── BREADCRUMB ──────────────────────────────────── */
+    .bc-bar { background: var(--surf); border-bottom: 1px solid var(--bdr); padding: 13px 0; }
+    .bc { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+    .bc a { color:var(--muted); text-decoration:none; transition:color .15s; }
+    .bc a:hover { color:var(--pri); }
+
+    /* ── SECTION ATOMS ───────────────────────────────── */
+    .s-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .18em;
+      color: var(--pri); margin-bottom: 8px;
+    }
+    .s-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.9rem,3.5vw,2.8rem); font-weight: 800;
+      color: var(--text); text-transform: uppercase; line-height: 1.04;
+      margin-bottom: 14px;
+    }
+    .s-title em { color: var(--pri); font-style: normal; }
+    .s-sub { font-size: 15px; color: var(--muted); line-height: 1.72; }
+
+    /* ── WHY SECTION ─────────────────────────────────── */
+    .why { background: var(--white); padding: 88px 0 80px; }
+    .why-head { margin-bottom: 52px; }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+
+    .why-card {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-xl);
+      /* ── GENEROUS PADDING ── */
+      padding: 40px 36px 36px;
+      display: flex; flex-direction: column; gap: 22px;
+      position: relative; overflow: hidden;
+      transition: all .28s cubic-bezier(.22,.68,0,1.2);
+    }
+    .why-card::after {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:3px;
+      background: var(--pri); border-radius: var(--r-xl) var(--r-xl) 0 0;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .32s ease;
+    }
+    .why-card:hover::after { transform: scaleX(1); }
+    .why-card:hover {
+      border-color: var(--pri);
+      box-shadow: 0 16px 48px rgba(26,86,240,.1);
+      transform: translateY(-5px);
+      background: var(--white);
+    }
+    .wc-icon {
+      width: 64px; height: 64px; flex-shrink: 0;
+      background: var(--pri-fa); border-radius: var(--r-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri); transition: all .2s;
+    }
+    .why-card:hover .wc-icon { background: var(--pri); color: #fff; }
+    .wc-icon svg { width: 28px; height: 28px; }
+    .wc-body {}
+    .wc-body h3 {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 21px; font-weight: 700;
+      color: var(--text); text-transform: uppercase; letter-spacing: .03em;
+      margin-bottom: 10px;
+    }
+    .wc-body p { font-size: 14px; color: var(--muted); line-height: 1.78; }
+
+    /* ── TECHNIQUE ROWS ──────────────────────────────── */
+    .techs { background: var(--surf); padding: 88px 0 80px; }
+    .techs-head { text-align: center; margin-bottom: 64px; }
+    .techs-head .s-sub { max-width: 480px; margin: 0 auto; }
+
+    .tech-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding: 60px 0; border-bottom: 1px solid var(--bdr);
+    }
+    .tech-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .tech-row:nth-child(even) .tvis { order: 2; }
+    .tech-row:nth-child(even) .tcnt { order: 1; }
+
+    .tvis {
+      background: linear-gradient(145deg, var(--dark) 0%, var(--dark2) 100%);
+      border-radius: var(--r-2xl); aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .tvis::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg, transparent, transparent 22px,
+        rgba(26,86,240,.04) 22px, rgba(26,86,240,.04) 23px
+      );
+    }
+    .tvis-glow {
+      position: absolute; width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(26,86,240,.22) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .tvis-icon {
+      position: relative;
+      width: 80px; height: 80px;
+      background: rgba(26,86,240,.16); border-radius: var(--r-xl);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri-lt);
+    }
+    .tvis-icon svg { width: 36px; height: 36px; }
+    .tvis-name {
+      position: relative;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: clamp(1.4rem,2.5vw,2rem); font-weight: 800;
+      color: rgba(255,255,255,.1); text-transform: uppercase; letter-spacing: .08em;
+      text-align: center; padding: 0 24px; line-height: 1.1;
+    }
+
+    .tcnt {}
+    .tcnt-num {
+      display: inline-block;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .16em;
+      color: var(--pri); background: var(--pri-fa);
+      border-radius: var(--r-pill); padding: 5px 16px; margin-bottom: 18px;
+    }
+    .tcnt h3 {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: clamp(1.5rem,2.8vw,2.2rem); font-weight: 800;
+      color: var(--text); text-transform: uppercase; line-height: 1.08;
+      margin-bottom: 20px;
+    }
+    .tcnt p { font-size: 14.5px; color: var(--muted); line-height: 1.82; margin-bottom: 16px; }
+    .tcnt p:last-of-type { margin-bottom: 0; }
+    .t-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--bdr);
+    }
+    .t-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--pri-fa); color: var(--pri);
+      font-size: 12px; font-weight: 600;
+      border-radius: var(--r-pill); padding: 5px 14px;
+    }
+    .t-tag::before { content:''; width:5px; height:5px; background:var(--pri); border-radius:50%; }
+
+    /* ── TYPES GRID ──────────────────────────────────── */
+    .types { background: var(--white); padding: 88px 0 80px; }
+    .types-head { text-align: center; margin-bottom: 56px; }
+    .types-head .s-sub { max-width: 460px; margin: 0 auto; }
+
+    .types-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .tc {
+      background: var(--white);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-xl);
+      overflow: hidden; transition: all .25s;
+      display: flex; flex-direction: column;
+    }
+    .tc:hover { border-color: var(--pri); box-shadow: 0 16px 48px rgba(26,86,240,.09); transform: translateY(-4px); }
+    .tc--wide { grid-column: span 2; }
+    .tc-head {
+      background: var(--dark);
+      /* ── HEAD PADDING ── */
+      padding: 26px 30px 24px;
+      display: flex; align-items: center; gap: 18px;
+      position: relative; overflow: hidden;
+      border-bottom: 2.5px solid var(--pri);
+    }
+    .tc-head::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(26,86,240,.07) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .tc-num {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 44px; font-weight: 800;
+      color: rgba(26,86,240,.22); line-height: 1; flex-shrink: 0; width: 50px;
+      position: relative; z-index: 1;
+    }
+    .tc-head-txt { position: relative; z-index: 1; }
+    .tc-sub { font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--pri-lt); margin-bottom: 4px; }
+    .tc h3 {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: #fff; text-transform: uppercase; letter-spacing: .03em; margin: 0; line-height: 1.1;
+    }
+    /* ── CARD BODY PADDING ── */
+    .tc-body {
+      padding: 28px 30px 32px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .tc-body p { font-size: 13.5px; color: var(--muted); line-height: 1.78; margin: 0 0 22px; flex: 1; }
+    .tc-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding-top: 20px; border-top: 1px solid var(--bdr); margin-top: auto;
+    }
+    .ctag {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--pri-fa); color: var(--pri);
+      font-size: 11.5px; font-weight: 600;
+      border-radius: var(--r-pill); padding: 5px 13px;
+    }
+    .ctag::before { content:''; width:4.5px; height:4.5px; background:var(--pri); border-radius:50%; }
+
+    /* ── CTA ─────────────────────────────────────────── */
+    .cta { background: var(--dark); padding: 88px 0; position: relative; overflow: hidden; }
+    .cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 65% 80% at 50% 115%, rgba(26,86,240,.25) 0%, transparent 65%);
+    }
+    .cta-in {
+      position: relative;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 48px; align-items: center;
+    }
+    .cta-in h2 {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: clamp(1.9rem,3.5vw,2.8rem); font-weight: 800;
+      color: #fff; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .cta-in h2 em { color: var(--pri); font-style: normal; }
+    .cta-in p { font-size: 15px; color: rgba(255,255,255,.5); max-width: 540px; line-height: 1.72; }
+    .cta-btns { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+    .btn-solid {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--pri); color: #fff;
+      font-family:'Barlow Condensed',sans-serif; font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: 15px 40px; border-radius: var(--r-md);
+      text-decoration: none; transition: all .2s; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(26,86,240,.32);
+    }
+    .btn-solid:hover { background:#1240CC; transform:translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,.7);
+      font-family:'Barlow Condensed',sans-serif; font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: 13px 32px; border-radius: var(--r-md);
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,.15);
+      transition: all .15s; white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-types { display: none; }
+      .tech-row { grid-template-columns: 1fr; gap: 36px; }
+      .tech-row:nth-child(even) .tvis,
+      .tech-row:nth-child(even) .tcnt { order: unset; }
+      .cta-in { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 860px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .types-grid { grid-template-columns: 1fr 1fr; }
+      .tc--wide { grid-column: span 1; }
+    }
+    @media (max-width: 560px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .types-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+      .why-card { padding: 32px 28px 28px; }
+      .tc-body { padding: 24px 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-pill"><span class="dot"></span>Printing Department</div>
+          <h1>Premium <em>Fabric</em><br>Printing</h1>
+          <p class="hero-desc">
+            At <strong>ProCombat</strong>, we specialize in premium fabric printing techniques to bring your designs to life with <strong>vibrant, long-lasting colors</strong>. Whether it's <strong>screen printing, DTF, or heat transfer</strong> — we ensure high-definition results that stand up to <strong>training, competition, and daily wear</strong>.
+          </p>
+          <a href="contact.html" class="btn-cta">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg>
+            Request a Quote
+          </a>
+        </div>
+        <div class="hero-types">
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><span>Screen Print</span></div>
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><span>DTF</span></div>
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><span>Sublimation</span></div>
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span>Heat Transfer</span></div>
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85"/></svg></div><span>Digital</span></div>
+          <div class="ht"><div class="ht-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div><span>Puff &amp; 3D</span></div>
+          <div class="ht ht-wide"><span>Silicone · Flock · Water-Based · Discharge</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREADCRUMB -->
+  <div class="bc-bar">
+    <div class="container">
+      <nav class="bc"><a href="/">Home</a> <span>›</span> <span>Printing</span></nav>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why">
+      <div class="container">
+        <div class="why-head">
+          <p class="s-label">Why ProCombat Printing</p>
+          <h2 class="s-title">Why Choose Our <em>Printing Services?</em></h2>
+          <p class="s-sub" style="max-width:520px">High-definition results built for the demands of combat sports and everyday athleisure.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="wc-body">
+              <h3>Vibrant &amp; Durable Prints</h3>
+              <p>No peeling, fading, or cracking. Several tests are made during the printing process before the primary sample is ready for production. Colors stay vivid wash after wash.</p>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            </div>
+            <div class="wc-body">
+              <h3>Custom Printing for Any Fabric</h3>
+              <p>The type of printing the fabric supports is ensured by our printing specialists. Includes cotton, polyester, blends, and technical sportswear.</p>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="wc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="wc-body">
+              <h3>Fast Turnaround &amp; Bulk Capabilities</h3>
+              <p>For high-speed manufacturing of all orders — regardless of size and quantity — all departments adhere rigidly to time effectiveness.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNIQUE DEEP DIVES -->
+    <section class="techs">
+      <div class="container">
+        <div class="techs-head">
+          <p class="s-label">In Detail</p>
+          <h2 class="s-title">Our Printing <em>Techniques</em></h2>
+          <p class="s-sub">Every technique explained — so you can choose what's right for your product.</p>
+        </div>
+
+        <!-- Silk Screen -->
+        <div class="tech-row">
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 01</div>
+            <h3>Silk Screen Print</h3>
+            <p>Silkscreen printing is among many ways to print designs onto an item. Due to its cloth-friendly nature, it is able to print solid-color designs onto just about anything, no matter the blend or processing of the material.</p>
+            <p>ProCombat employs negative ink techniques to create sharper, more detailed results. We are open to more than certain machines for printing complex designs — this allows for the best result in coverage and matching colors.</p>
+            <div class="t-tags">
+              <span class="t-tag">All Fabrics</span>
+              <span class="t-tag">Multi-Color</span>
+              <span class="t-tag">High Volume</span>
+              <span class="t-tag">Sharp Edges</span>
+            </div>
+          </div>
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <div class="tvis-name">Silk Screen</div>
+          </div>
+        </div>
+
+        <!-- Puff -->
+        <div class="tech-row">
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+            <div class="tvis-name">Puff Printing</div>
+          </div>
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 02</div>
+            <h3>Puff Screen Printing</h3>
+            <p>It uses specialised puff inks for screen printing t-shirts, sweatshirts, or jackets to give them a vintage appearance. This technique is prevalent and currently being applied to add a vintage look to sportswear.</p>
+            <p>Heat is applied to the image after ample ink has been transferred to achieve the puff effect. Images may require pure puffs, and some require Plastisol as an additive. A larger puff increases the risk of cracking — our team calibrates precisely.</p>
+            <div class="t-tags">
+              <span class="t-tag">3D Raised Effect</span>
+              <span class="t-tag">Vintage Look</span>
+              <span class="t-tag">T-shirts / Hoodies</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital -->
+        <div class="tech-row">
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 03</div>
+            <h3>Digital Printing</h3>
+            <p>Digital printing is a valuable part of sports apparel manufacturing — providing a highly efficient method for individual athletes, teams, and clubs. It uses modern technology to create designs directly from computer files, dramatically reducing print costs and delivery times.</p>
+            <p>The resulting garment is lightweight, comfortable, durable, and built to withstand strenuous activity. Compared to sticker heat transfer, it is much more reliable with a significantly lower removal rate.</p>
+            <div class="t-tags">
+              <span class="t-tag">Photo-Quality</span>
+              <span class="t-tag">Full Color</span>
+              <span class="t-tag">Fast Delivery</span>
+              <span class="t-tag">Low Cost</span>
+            </div>
+          </div>
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+            <div class="tvis-name">Digital</div>
+          </div>
+        </div>
+
+        <!-- Flock -->
+        <div class="tech-row">
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M8.93 8.93a5 5 0 106.14 6.14"/></svg></div>
+            <div class="tvis-name">Flock Print</div>
+          </div>
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 04</div>
+            <h3>Flock Screen Printing</h3>
+            <p>Synthetic fibres such as cotton, rayon, and polyester are the primary basis for flock. After applying an adhesive liquid to the designated area, the flock is applied to it.</p>
+            <p>Flock screen printing has an embossed and smooth texture. To achieve different colors, the first flock-coloured dye is used as a base, then layered on top of the adhesive through a screen. The result is a delicate velvety softness.</p>
+            <div class="t-tags">
+              <span class="t-tag">Velvet Texture</span>
+              <span class="t-tag">Embossed</span>
+              <span class="t-tag">Premium Look</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Based -->
+        <div class="tech-row">
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 05</div>
+            <h3>Water-Based / Pigment Screen Printing</h3>
+            <p>Due to the water-based nature of the color, pigment screen printing (also known as water-based screen printing) uses eco-friendly inks instead of Plastisol-based liquids. This technique is primarily employed on white and light-colored fabrics for a soft, breathable finish.</p>
+            <div class="t-tags">
+              <span class="t-tag">Eco-Friendly Inks</span>
+              <span class="t-tag">Soft Hand Feel</span>
+              <span class="t-tag">Light Fabrics</span>
+            </div>
+          </div>
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+            <div class="tvis-name">Water Based</div>
+          </div>
+        </div>
+
+        <!-- Discharge -->
+        <div class="tech-row">
+          <div class="tvis">
+            <div class="tvis-glow"></div>
+            <div class="tvis-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="tvis-name">Discharge</div>
+          </div>
+          <div class="tcnt">
+            <div class="tcnt-num">Technique 06</div>
+            <h3>Discharge Screen Print</h3>
+            <p>The discharge screen printing technique uses different inks but the same machinery. Discharge inks replace the original color upon transfer, creating a fabric-like texture. They can be used alone or as a base for other inks, similar to water-based printing on darker fabrics.</p>
+            <p>High-quality, high-definition printing. Unlike puff printing which has soft characters and imperfect edges, discharge employs low-viscosity inks for sharper, finer edges and a subtle 3D effect — without the risk of cracking.</p>
+            <div class="t-tags">
+              <span class="t-tag">Dark Fabrics</span>
+              <span class="t-tag">Sharp Edges</span>
+              <span class="t-tag">Fabric Texture</span>
+              <span class="t-tag">3D Depth</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TYPES OVERVIEW GRID -->
+    <section class="types">
+      <div class="container">
+        <div class="types-head">
+          <p class="s-label">All Capabilities</p>
+          <h2 class="s-title">Types of <em>Printing We Offer</em></h2>
+          <p class="s-sub">Choose from various types of printing available at our Sialkot factory:</p>
+        </div>
+        <div class="types-grid">
+
+          <div class="tc tc--wide">
+            <div class="tc-head">
+              <div class="tc-num">01</div>
+              <div class="tc-head-txt"><div class="tc-sub">Most Versatile</div><h3>Silk Screen Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Silkscreen printing can be applied to virtually any fabric regardless of blend. Solid-color designs come out crisp and durable with multi-color capabilities and perfect coverage.</p>
+              <div class="tc-tags"><span class="ctag">All Fabrics</span><span class="ctag">Multi-Color</span><span class="ctag">High Volume</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">02</div>
+              <div class="tc-head-txt"><div class="tc-sub">All-Over</div><h3>Sublimation</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Dye infused directly into polyester fibers. All-over photographic-quality prints that never peel or crack — ideal for full-color gradients.</p>
+              <div class="tc-tags"><span class="ctag">Polyester</span><span class="ctag">All-Over</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">03</div>
+              <div class="tc-head-txt"><div class="tc-sub">Raised Effect</div><h3>Puff Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Specialised puff inks create a raised, dimensional vintage look. Heat-activated after ink transfer for bold visual depth.</p>
+              <div class="tc-tags"><span class="ctag">3D Effect</span><span class="ctag">Vintage</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">04</div>
+              <div class="tc-head-txt"><div class="tc-sub">Transfer</div><h3>DTF Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Direct-to-Film transfers for exceptional detail on any fabric. Perfect for small runs and complex multi-color designs.</p>
+              <div class="tc-tags"><span class="ctag">Any Fabric</span><span class="ctag">Small Runs</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">05</div>
+              <div class="tc-head-txt"><div class="tc-sub">Versatile</div><h3>Heat Transfer</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Vinyl, reflective, and specialty heat transfers for names, numbers, logos, and reflective safety elements on all garments.</p>
+              <div class="tc-tags"><span class="ctag">Vinyl</span><span class="ctag">Reflective</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">06</div>
+              <div class="tc-head-txt"><div class="tc-sub">Texture</div><h3>Silicone Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Soft, flexible, grip-enhancing silicone texture. Popular for waistbands, non-slip elements, and premium tactile logo applications.</p>
+              <div class="tc-tags"><span class="ctag">Non-Slip</span><span class="ctag">Premium Feel</span></div>
+            </div>
+          </div>
+
+          <div class="tc">
+            <div class="tc-head">
+              <div class="tc-num">07</div>
+              <div class="tc-head-txt"><div class="tc-sub">3D Effect</div><h3>3D Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Sharp three-dimensional raised effect with fine, defined edges. High-density inks for premium logos that command attention on any garment.</p>
+              <div class="tc-tags"><span class="ctag">3D Raised</span><span class="ctag">Fine Edges</span></div>
+            </div>
+          </div>
+
+          <div class="tc tc--wide">
+            <div class="tc-head">
+              <div class="tc-num">08</div>
+              <div class="tc-head-txt"><div class="tc-sub">Eco-Friendly</div><h3>Water-Based &amp; Discharge Screen Printing</h3></div>
+            </div>
+            <div class="tc-body">
+              <p>Water-based uses eco-friendly inks for soft, breathable prints on light fabrics. Discharge removes the base dye to create a fabric-like, worn-in texture — ideal for dark garments without heavy ink layering.</p>
+              <div class="tc-tags"><span class="ctag">Eco Inks</span><span class="ctag">Soft Hand Feel</span><span class="ctag">Dark Fabrics</span><span class="ctag">Natural Texture</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-in">
+          <div>
+            <h2>Ready to <em>Print Your Brand?</em></h2>
+            <p>Tell us your design, fabric, and quantity. Our printing specialists will recommend the best technique and deliver a sample for approval before production begins.</p>
+          </div>
+          <div class="cta-btns">
+            <a href="contact.html" class="btn-solid">Request a Sample</a>
+            <a href="embroidery.html" class="btn-ghost">Explore Embroidery →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module">
+import Header from '../components/header.js';
+import Footer from '../components/footer.js';
+Header.init('body');
+Footer.init('body');
+</script>
+</body>
+</html>

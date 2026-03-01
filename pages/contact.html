@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us — ProCombat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/variables.css"/>
+  <link rel="stylesheet" href="../css/base.css"/>
+  <link rel="stylesheet" href="../css/components/header.css"/>
+  <link rel="stylesheet" href="../css/components/footer.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0A0A0F;
+      --dark2:   #13131C;
+      --dark3:   #1A1A26;
+      --pri:     #1A56F0;
+      --pri-lt:  #7b9fff;
+      --pri-fa:  rgba(26,86,240,0.09);
+      --pri-fa2: rgba(26,86,240,0.15);
+      --white:   #ffffff;
+      --surf:    #F5F6FA;
+      --bdr:     #E4E6EF;
+      --bdr2:    #D1D5E0;
+      --text:    #0C0E18;
+      --muted:   #64748B;
+      --body:    #374151;
+      --success: #22C55E;
+      --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+      --r-xl: 22px; --r-2xl: 30px; --r-pill: 999px;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; color: var(--body); background: var(--white); }
+    .wrap { padding-top: 108px; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── HERO ──────────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      padding: 80px 0 72px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 90% at 15% 50%, rgba(26,86,240,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 85% 80%, rgba(26,86,240,0.08) 0%, transparent 55%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,86,240,0.15);
+      border: 1px solid rgba(26,86,240,0.35);
+      color: var(--pri-lt);
+      font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: var(--r-pill); margin-bottom: 20px;
+    }
+    .hero-pill .dot { width: 7px; height: 7px; background: var(--pri); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800;
+      color: #fff; text-transform: uppercase; line-height: .96; margin-bottom: 18px;
+    }
+    .hero h1 em { color: var(--pri); font-style: normal; }
+    .hero-desc {
+      font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.78;
+      max-width: 460px;
+    }
+
+    /* Hero right: quick-info cards */
+    .hero-cards {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .hc {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-xl);
+      padding: 20px 22px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: all .22s;
+    }
+    .hc:hover { border-color: rgba(26,86,240,.45); background: rgba(26,86,240,.08); }
+    .hc-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(26,86,240,.16); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri-lt);
+    }
+    .hc-icon svg { width: 20px; height: 20px; }
+    .hc-body {}
+    .hc-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--pri-lt); margin-bottom: 5px;
+    }
+    .hc-vals { display: flex; flex-direction: column; gap: 3px; }
+    .hc-val {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,.8);
+      text-decoration: none; transition: color .15s;
+    }
+    a.hc-val:hover { color: var(--pri-lt); }
+
+    /* ── BREADCRUMB ────────────────────────────────── */
+    .bc-bar { background: var(--surf); border-bottom: 1px solid var(--bdr); padding: 13px 0; }
+    .bc { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+    .bc a { color:var(--muted); text-decoration:none; } .bc a:hover { color:var(--pri); }
+
+    /* ── MAIN CONTACT SECTION ──────────────────────── */
+    .contact-main {
+      background: var(--white);
+      padding: 88px 0 80px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 52px;
+      align-items: start;
+    }
+
+    /* ── FORM ──────────────────────────────────────── */
+    .form-wrap {}
+    .form-heading { margin-bottom: 36px; }
+    .form-label-tag {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:11px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.18em;
+      color:var(--pri); margin-bottom:8px;
+    }
+    .form-title {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800;
+      color:var(--text); text-transform:uppercase; line-height:1.04; margin-bottom:12px;
+    }
+    .form-title em { color:var(--pri); font-style:normal; }
+    .form-sub { font-size:14.5px; color:var(--muted); line-height:1.72; }
+
+    form#contact-form { display: flex; flex-direction: column; gap: 18px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field label {
+      font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .field label .req { color: var(--pri); margin-left: 2px; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--surf);
+      border: 1.5px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--text);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      resize: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--muted); }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--pri);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(26,86,240,.1);
+    }
+    .field textarea { height: 140px; line-height: 1.6; }
+    .field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; padding-right: 42px; cursor: pointer; }
+
+    /* Checkbox */
+    .check-field { display: flex; gap: 12px; align-items: flex-start; }
+    .check-field input[type="checkbox"] {
+      width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+      accent-color: var(--pri); cursor: pointer;
+    }
+    .check-field label { font-size: 13px; color: var(--muted); line-height: 1.55; cursor: pointer; }
+    .check-field label a { color: var(--pri); text-decoration: none; }
+
+    /* Submit button */
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--pri); color: #fff;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      padding: 16px 40px; border-radius: var(--r-md);
+      border: none; cursor: pointer; transition: all .2s;
+      box-shadow: 0 4px 20px rgba(26,86,240,.32);
+      width: 100%;
+    }
+    .btn-submit:hover { background: #1240CC; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,86,240,.35); }
+    .btn-submit svg { width: 18px; height: 18px; }
+    .btn-submit.loading { opacity: .7; pointer-events: none; }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      background: rgba(34,197,94,.08);
+      border: 1.5px solid rgba(34,197,94,.3);
+      border-radius: var(--r-xl);
+      padding: 28px 28px;
+      text-align: center; margin-top: 8px;
+    }
+    .form-success.show { display: block; }
+    .form-success svg { width: 48px; height: 48px; color: var(--success); margin-bottom: 12px; }
+    .form-success h4 {
+      font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:800;
+      color: var(--text); text-transform:uppercase; margin-bottom:8px;
+    }
+    .form-success p { font-size:14px; color:var(--muted); line-height:1.65; }
+
+    /* ── SIDEBAR INFO ──────────────────────────────── */
+    .info-sidebar { display: flex; flex-direction: column; gap: 18px; }
+
+    .info-card {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-xl);
+      padding: 32px 28px;
+      transition: all .22s;
+    }
+    .info-card:hover { border-color: var(--pri); box-shadow: 0 12px 36px rgba(26,86,240,.08); }
+    .info-card-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 22px;
+    }
+    .ic-icon {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: var(--pri-fa2); border-radius: var(--r-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri); transition: all .2s;
+    }
+    .info-card:hover .ic-icon { background: var(--pri); color: #fff; }
+    .ic-icon svg { width: 22px; height: 22px; }
+    .ic-head-txt {}
+    .ic-label {
+      font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:3px;
+    }
+    .ic-name {
+      font-family:'Barlow Condensed',sans-serif; font-size:19px; font-weight:700;
+      color:var(--text); text-transform:uppercase; letter-spacing:.03em;
+    }
+    .ic-items { display:flex; flex-direction:column; gap:10px; }
+    .ic-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 12px 14px;
+      background: var(--white);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-md);
+      text-decoration: none; transition: all .18s;
+    }
+    .ic-item:hover { border-color:var(--pri); background:var(--pri-fa); }
+    .ic-item-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri);
+    }
+    .ic-item-icon svg { width: 16px; height: 16px; }
+    .ic-item-txt { display:flex; flex-direction:column; gap:1px; }
+    .ic-item-sub { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+    .ic-item-val { font-size:14px; font-weight:500; color:var(--text); }
+
+    /* Address special */
+    .addr-block {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .addr-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--pri-fa2); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri); margin-top: 2px;
+    }
+    .addr-icon svg { width: 18px; height: 18px; }
+    .addr-txt {}
+    .addr-txt p { font-size:14.5px; color:var(--text); font-weight:500; line-height:1.65; }
+    .addr-txt span { font-size:12px; color:var(--muted); }
+
+    /* Hours card */
+    .hours-list { display:flex; flex-direction:column; gap:8px; }
+    .hour-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 14px;
+      background:var(--white); border:1px solid var(--bdr); border-radius:var(--r-md);
+    }
+    .hour-row .day { font-size:13.5px; font-weight:600; color:var(--text); }
+    .hour-row .time { font-size:13px; color:var(--muted); }
+    .hour-row.today { border-color:var(--pri); background:var(--pri-fa); }
+    .hour-row.today .day { color:var(--pri); }
+    .hour-row.today .time { color:var(--pri); font-weight:600; }
+
+    /* ── MAP SECTION ───────────────────────────────── */
+    .map-section {
+      background: var(--surf);
+      padding: 0;
+    }
+    .map-section-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      min-height: 480px;
+    }
+    .map-frame { position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 480px;
+      border: 0; display: block; filter: saturate(.85);
+    }
+    .map-info {
+      background: var(--dark);
+      padding: 52px 40px;
+      display: flex; flex-direction: column; justify-content: center; gap: 28px;
+      position: relative; overflow: hidden;
+    }
+    .map-info::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 20%, rgba(26,86,240,0.18) 0%, transparent 60%);
+    }
+    .map-info-content { position: relative; }
+    .map-title {
+      font-family:'Barlow Condensed',sans-serif;
+      font-size: 28px; font-weight: 800;
+      color: #fff; text-transform: uppercase; line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .map-title em { color:var(--pri); font-style:normal; }
+    .map-detail {
+      display: flex; gap: 14px; align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .map-detail:last-child { margin-bottom: 0; }
+    .md-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(26,86,240,.2); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pri-lt);
+    }
+    .md-icon svg { width: 16px; height: 16px; }
+    .md-txt {}
+    .md-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:3px; }
+    .md-val { font-size:14px; font-weight:500; color:rgba(255,255,255,.8); line-height:1.55; }
+    .md-val a { color:rgba(255,255,255,.8); text-decoration:none; transition:color .15s; }
+    .md-val a:hover { color:var(--pri-lt); }
+
+    .btn-directions {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pri); color: #fff;
+      font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.08em;
+      padding:13px 26px; border-radius:var(--r-md);
+      text-decoration:none; transition:all .2s; width:fit-content; margin-top:8px;
+      box-shadow:0 4px 16px rgba(26,86,240,.3);
+    }
+    .btn-directions:hover { background:#1240CC; transform:translateY(-2px); }
+    .btn-directions svg { width:16px; height:16px; }
+
+    /* ── WHATSAPP BANNER ───────────────────────────── */
+    .wa-banner {
+      background: var(--white);
+      border-top: 1px solid var(--bdr);
+      border-bottom: 1px solid var(--bdr);
+      padding: 40px 0;
+    }
+    .wa-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .wa-left { display:flex; align-items:center; gap:20px; }
+    .wa-icon-wrap {
+      width: 60px; height: 60px; flex-shrink: 0;
+      background: #25D366; border-radius: var(--r-xl);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .wa-icon-wrap svg { width:28px; height:28px; fill:#fff; }
+    .wa-txt h3 {
+      font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:800;
+      color:var(--text); text-transform:uppercase; margin-bottom:4px;
+    }
+    .wa-txt p { font-size:14px; color:var(--muted); }
+    .btn-wa {
+      display:inline-flex; align-items:center; gap:10px;
+      background:#25D366; color:#fff;
+      font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.08em;
+      padding:14px 32px; border-radius:var(--r-md);
+      text-decoration:none; transition:all .2s; white-space:nowrap;
+      box-shadow:0 4px 16px rgba(37,211,102,.3);
+    }
+    .btn-wa:hover { background:#1fba5a; transform:translateY(-2px); }
+    .btn-wa svg { width:18px; height:18px; fill:#fff; }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .info-sidebar { display: grid; grid-template-columns: 1fr 1fr; }
+      .map-section-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 44px 32px; }
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-cards { display: grid; grid-template-columns: 1fr 1fr; }
+      .info-sidebar { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .hero-cards { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+      .wa-inner { flex-direction: column; align-items: flex-start; }
+      .map-info { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-pill"><span class="dot"></span>Get In Touch</div>
+          <h1>Contact <em>ProCombat</em></h1>
+          <p class="hero-desc">Have a project in mind? Need a sample? Want to discuss bulk pricing? Our team is ready to help you build the best combat sports gear on the market.</p>
+        </div>
+        <div class="hero-cards">
+          <!-- Address -->
+          <div class="hc">
+            <div class="hc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="hc-body">
+              <div class="hc-label">Address</div>
+              <div class="hc-vals">
+                <span class="hc-val">11-km Daska Road, Addah</span>
+                <span class="hc-val">Sialkot, ZIP 51041, Pakistan</span>
+              </div>
+            </div>
+          </div>
+          <!-- Phone -->
+          <div class="hc">
+            <div class="hc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg>
+            </div>
+            <div class="hc-body">
+              <div class="hc-label">Call Us</div>
+              <div class="hc-vals">
+                <a class="hc-val" href="tel:+92523525300">052-3525300 / 052-3525550</a>
+                <a class="hc-val" href="tel:+923009618144">0092 300-9618144</a>
+                <a class="hc-val" href="tel:+923227977771">0092 322-7977771</a>
+              </div>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="hc">
+            <div class="hc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="hc-body">
+              <div class="hc-label">Email Us</div>
+              <div class="hc-vals">
+                <a class="hc-val" href="mailto:procombat@gmail.com">procombat@gmail.com</a>
+                <a class="hc-val" href="mailto:info@procombat.com">info@procombat.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREADCRUMB -->
+  <div class="bc-bar">
+    <div class="container">
+      <nav class="bc"><a href="/">Home</a> <span>›</span> <span>Contact</span></nav>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- WHATSAPP BANNER -->
+    <div class="wa-banner">
+      <div class="container">
+        <div class="wa-inner">
+          <div class="wa-left">
+            <div class="wa-icon-wrap">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            </div>
+            <div class="wa-txt">
+              <h3>Quick Response on WhatsApp</h3>
+              <p>Chat directly with our team for fast quotes, samples, and production updates.</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="https://wa.me/923009618144" target="_blank" class="btn-wa">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+              +92 300-9618144
+            </a>
+            <a href="https://wa.me/923227977771" target="_blank" class="btn-wa">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+              +92 322-7977771
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM + INFO -->
+    <section class="contact-main">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- FORM -->
+          <div class="form-wrap">
+            <div class="form-heading">
+              <p class="form-label-tag">Send a Message</p>
+              <h2 class="form-title">Tell Us About<br>Your <em>Project</em></h2>
+              <p class="form-sub">Fill in the details below and our team will get back to you within 24 hours with a quote or more information.</p>
+            </div>
+
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="fname">First Name <span class="req">*</span></label>
+                  <input type="text" id="fname" name="fname" placeholder="e.g. Muhammad" required/>
+                </div>
+                <div class="field">
+                  <label for="lname">Last Name <span class="req">*</span></label>
+                  <input type="text" id="lname" name="lname" placeholder="e.g. Ali" required/>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="you@yourcompany.com" required/>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone / WhatsApp</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900"/>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="company">Brand / Company Name</label>
+                  <input type="text" id="company" name="company" placeholder="Your brand or gym name"/>
+                </div>
+                <div class="field">
+                  <label for="country">Country <span class="req">*</span></label>
+                  <input type="text" id="country" name="country" placeholder="e.g. United States" required/>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="inquiry">Inquiry Type <span class="req">*</span></label>
+                <select id="inquiry" name="inquiry" required>
+                  <option value="" disabled selected>Select what you're looking for…</option>
+                  <option value="custom-order">Custom Order / Bulk Production</option>
+                  <option value="sample">Sample Request</option>
+                  <option value="printing">Printing Services</option>
+                  <option value="embroidery">Embroidery Services</option>
+                  <option value="fabric">Fabric / Material Inquiry</option>
+                  <option value="template">Design Templates</option>
+                  <option value="pricing">Pricing & MOQ</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="products">Products of Interest</label>
+                <input type="text" id="products" name="products" placeholder="e.g. BJJ Gi, Rashguard, MMA Shorts, Boxing Gloves…"/>
+              </div>
+
+              <div class="field">
+                <label for="quantity">Estimated Quantity</label>
+                <select id="quantity" name="quantity">
+                  <option value="" disabled selected>Select quantity range…</option>
+                  <option>1–50 units (sample / small run)</option>
+                  <option>51–200 units</option>
+                  <option>201–500 units</option>
+                  <option>501–1000 units</option>
+                  <option>1000+ units (bulk)</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Message <span class="req">*</span></label>
+                <textarea id="message" name="message" placeholder="Tell us more about your project — design ideas, deadlines, special requirements, questions…" required></textarea>
+              </div>
+
+              <div class="check-field">
+                <input type="checkbox" id="consent" name="consent" required/>
+                <label for="consent">I agree that ProCombat may contact me regarding my inquiry. Your information will never be shared with third parties.</label>
+              </div>
+
+              <button type="submit" class="btn-submit" id="submit-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Message
+              </button>
+            </form>
+
+            <div class="form-success" id="form-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h4>Message Sent!</h4>
+              <p>Thanks for reaching out. Our team will review your inquiry and respond within <strong>24 hours</strong>. For urgent matters, please WhatsApp us directly.</p>
+            </div>
+          </div>
+
+          <!-- SIDEBAR INFO -->
+          <div class="info-sidebar">
+
+            <!-- Address -->
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="ic-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="ic-head-txt">
+                  <div class="ic-label">Find Us</div>
+                  <div class="ic-name">Our Location</div>
+                </div>
+              </div>
+              <div class="addr-block">
+                <div class="addr-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div class="addr-txt">
+                  <p>11-km Daska Road, Addah<br>Sialkot, Punjab — ZIP 51041<br>Pakistan</p>
+                  <span>Major production hub for combat sports gear</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="ic-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg>
+                </div>
+                <div class="ic-head-txt">
+                  <div class="ic-label">Dial Direct</div>
+                  <div class="ic-name">Call Us</div>
+                </div>
+              </div>
+              <div class="ic-items">
+                <a class="ic-item" href="tel:+92523525300">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">Office Line 1</span>
+                    <span class="ic-item-val">052-3525300</span>
+                  </div>
+                </a>
+                <a class="ic-item" href="tel:+92523525550">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">Office Line 2</span>
+                    <span class="ic-item-val">052-3525550</span>
+                  </div>
+                </a>
+                <a class="ic-item" href="tel:+923009618144">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">Mobile / WhatsApp</span>
+                    <span class="ic-item-val">0092 300-9618144</span>
+                  </div>
+                </a>
+                <a class="ic-item" href="tel:+923227977771">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">Mobile / WhatsApp</span>
+                    <span class="ic-item-val">0092 322-7977771</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="ic-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="ic-head-txt">
+                  <div class="ic-label">Write to Us</div>
+                  <div class="ic-name">Email</div>
+                </div>
+              </div>
+              <div class="ic-items">
+                <a class="ic-item" href="mailto:procombat@gmail.com">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">General Inquiries</span>
+                    <span class="ic-item-val">procombat@gmail.com</span>
+                  </div>
+                </a>
+                <a class="ic-item" href="mailto:info@procombat.com">
+                  <div class="ic-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                  <div class="ic-item-txt">
+                    <span class="ic-item-sub">Business</span>
+                    <span class="ic-item-val">info@procombat.com</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Office Hours -->
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="ic-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div class="ic-head-txt">
+                  <div class="ic-label">Availability</div>
+                  <div class="ic-name">Office Hours</div>
+                </div>
+              </div>
+              <div class="hours-list">
+                <div class="hour-row"><span class="day">Monday – Thursday</span><span class="time">9:00 AM – 6:00 PM</span></div>
+                <div class="hour-row today"><span class="day">Friday</span><span class="time">9:00 AM – 1:00 PM</span></div>
+                <div class="hour-row"><span class="day">Saturday</span><span class="time">10:00 AM – 4:00 PM</span></div>
+                <div class="hour-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+              </div>
+              <p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5;">All times are PKT (Pakistan Standard Time, UTC+5). WhatsApp responses may occur outside office hours.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <div class="map-section">
+      <div class="map-section-inner">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.2!2d74.5!3d32.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391ef0b1a24f6f63%3A0x4f9f8e7b5e9a2c1d!2sDaska+Road%2C+Sialkot%2C+Punjab%2C+Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="ProCombat Location — Sialkot, Pakistan">
+          </iframe>
+        </div>
+        <div class="map-info">
+          <div class="map-info-content">
+            <div class="map-title">Visit Our<br><em>Factory</em></div>
+
+            <div class="map-detail">
+              <div class="md-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="md-txt">
+                <div class="md-label">Address</div>
+                <div class="md-val">11-km Daska Road, Addah<br>Sialkot, ZIP 51041, Pakistan</div>
+              </div>
+            </div>
+
+            <div class="map-detail">
+              <div class="md-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6.07-6.07 19.79 19.79 0 01-3.07-8.63A2 2 0 014.18 0h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.91 7.91a16 16 0 006 6l1.27-.53a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg></div>
+              <div class="md-txt">
+                <div class="md-label">Phone</div>
+                <div class="md-val">
+                  <a href="tel:+92523525300">052-3525300</a> /
+                  <a href="tel:+92523525550">052-3525550</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-detail">
+              <div class="md-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="md-txt">
+                <div class="md-label">Email</div>
+                <div class="md-val"><a href="mailto:info@procombat.com">info@procombat.com</a></div>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com/?q=Daska+Road+Sialkot+Pakistan" target="_blank" class="btn-directions">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              Get Directions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script type="module">
+import Header from '../components/header.js';
+import Footer from '../components/footer.js';
+Header.init('body');
+Footer.init('body');
+</script>
+
+<script>
+// ── FORM HANDLING ──────────────────────────────────
+const form = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const successMsg = document.getElementById('form-success');
+
+// Highlight today
+const days = ['Sunday','Monday – Thursday','Monday – Thursday','Monday – Thursday','Monday – Thursday','Friday','Saturday'];
+const today = new Date().getDay(); // 0=Sun,1=Mon…6=Sat
+const rows = document.querySelectorAll('.hour-row');
+// Map day -> row index
+const dayMap = { 0:3, 1:0, 2:0, 3:0, 4:0, 5:1, 6:2 };
+rows.forEach(r => r.classList.remove('today'));
+const todayRow = rows[dayMap[today]];
+if (todayRow) todayRow.classList.add('today');
+
+// Inline validation helpers
+function setError(field, msg) {
+  field.style.borderColor = '#EF4444';
+  let err = field.parentElement.querySelector('.field-err');
+  if (!err) {
+    err = document.createElement('span');
+    err.className = 'field-err';
+    err.style.cssText = 'font-size:12px;color:#EF4444;margin-top:-4px;';
+    field.parentElement.appendChild(err);
+  }
+  err.textContent = msg;
+}
+function clearError(field) {
+  field.style.borderColor = '';
+  const err = field.parentElement.querySelector('.field-err');
+  if (err) err.remove();
+}
+
+// Real-time clear on input
+form.querySelectorAll('input,select,textarea').forEach(el => {
+  el.addEventListener('input', () => clearError(el));
+  el.addEventListener('change', () => clearError(el));
+});
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let valid = true;
+
+  const fname = form.fname;
+  const lname = form.lname;
+  const email = form.email;
+  const inquiry = form.inquiry;
+  const country = form.country;
+  const message = form.message;
+  const consent = form.consent;
+
+  if (!fname.value.trim()) { setError(fname, 'Please enter your first name.'); valid = false; }
+  if (!lname.value.trim()) { setError(lname, 'Please enter your last name.'); valid = false; }
+  if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    setError(email, 'Please enter a valid email address.'); valid = false;
+  }
+  if (!country.value.trim()) { setError(country, 'Please enter your country.'); valid = false; }
+  if (!inquiry.value) { setError(inquiry, 'Please select an inquiry type.'); valid = false; }
+  if (!message.value.trim() || message.value.trim().length < 10) {
+    setError(message, 'Please write a message (at least 10 characters).'); valid = false;
+  }
+  if (!consent.checked) {
+    setError(consent, 'Please agree to be contacted.'); valid = false;
+  }
+
+  if (!valid) {
+    // Scroll to first error
+    const firstError = form.querySelector('[style*="EF4444"]');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Simulate sending
+  submitBtn.classList.add('loading');
+  submitBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Sending…`;
+
+  setTimeout(() => {
+    form.style.display = 'none';
+    successMsg.classList.add('show');
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 1400);
+});
+</script>
+</body>
+</html>

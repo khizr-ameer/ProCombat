@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About ProCombat — 22+ years of premium combat sports gear manufacturing from Sialkot, Pakistan. Built for champions, crafted for brands."/>
+  <title>About Us — ProCombat</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="../css/variables.css"/>
+  <link rel="stylesheet" href="../css/base.css"/>
+  <link rel="stylesheet" href="../css/components/header.css"/>
+  <link rel="stylesheet" href="../css/components/footer.css"/>
+
+  <style>
+    /* ── PAGE OFFSET ─────────────────────────────── */
+    .page-wrap { padding-top: calc(var(--navbar-height) + var(--topbar-height)); }
+
+    /* ── HERO BANNER ─────────────────────────────── */
+    .about-hero {
+      position: relative;
+      background: var(--color-secondary);
+      overflow: hidden;
+      padding: var(--space-20) 0 var(--space-16);
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,86,240,0.18) 0%, transparent 70%),
+        linear-gradient(135deg, #0A0A0F 0%, #16161E 100%);
+    }
+    .about-hero__grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,86,240,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,240,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .about-hero__inner {
+      position: relative;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    .about-hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(26,86,240,0.15);
+      border: 1px solid rgba(26,86,240,0.3);
+      color: var(--color-primary-light);
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-4);
+    }
+    .about-hero__tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .about-hero__title {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-extrabold);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.0;
+      margin: 0 0 var(--space-5);
+    }
+    .about-hero__title span { color: var(--color-primary); }
+    .about-hero__desc {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.6);
+      line-height: var(--leading-loose);
+      margin: 0 0 var(--space-8);
+      max-width: 480px;
+    }
+    .about-hero__desc strong { color: rgba(255,255,255,0.9); font-weight: var(--fw-semibold); }
+    .about-hero__stats {
+      display: flex;
+      gap: var(--space-8);
+    }
+    .stat-item__num {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--fw-extrabold);
+      color: var(--color-primary);
+      line-height: 1;
+    }
+    .stat-item__label {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* right side visual */
+    .about-hero__visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .hero-badge-row {
+      display: flex;
+      gap: var(--space-3);
+    }
+    .hero-badge {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5) var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      backdrop-filter: blur(8px);
+      transition: var(--transition-base);
+    }
+    .hero-badge:hover { border-color: rgba(26,86,240,0.4); background: rgba(26,86,240,0.08); }
+    .hero-badge__icon {
+      width: 40px; height: 40px;
+      background: rgba(26,86,240,0.15);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .hero-badge__icon svg { width: 20px; height: 20px; }
+    .hero-badge__text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: var(--text-md);
+      font-weight: var(--fw-bold);
+      color: #fff;
+    }
+    .hero-badge__text span {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.45);
+    }
+    .hero-quote-card {
+      background: var(--color-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .hero-quote-card p {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      margin: 0 0 var(--space-3);
+      font-style: italic;
+    }
+    .hero-quote-card span {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── BREADCRUMB ───────────────────────────────── */
+    .bc-bar { background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding: var(--space-3) 0; }
+    .bc-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); }
+    .bc { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--color-text-muted); font-family: var(--font-body); flex-wrap: wrap; }
+    .bc a { color: var(--color-text-muted); text-decoration: none; transition: var(--transition-fast); }
+    .bc a:hover { color: var(--color-primary); }
+    .bc .sep { color: var(--color-border-dark); font-size: 10px; }
+
+    /* ── SECTION SHARED ──────────────────────────── */
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: var(--fw-extrabold);
+      color: var(--color-text);
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin: 0 0 var(--space-4);
+    }
+    .section-title span { color: var(--color-primary); }
+    .section-sub {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: var(--leading-normal);
+      max-width: 560px;
+    }
+    .pc-container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+
+    /* ── MISSION STRIP ───────────────────────────── */
+    .mission-strip {
+      background: var(--color-white);
+      padding: var(--space-16) 0;
+    }
+    .mission-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    .mission-content {}
+    .mission-body {
+      font-size: var(--text-base);
+      color: var(--color-text-body);
+      line-height: var(--leading-loose);
+      margin: var(--space-5) 0 var(--space-6);
+    }
+    .mission-body p { margin: 0 0 var(--space-4); }
+    .mission-body strong { color: var(--color-text); font-weight: var(--fw-semibold); }
+    .mission-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+    .pillar {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      border-left: 3px solid var(--color-primary);
+      transition: var(--transition-fast);
+    }
+    .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
+    .pillar strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: var(--text-md);
+      font-weight: var(--fw-bold);
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .pillar span {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      font-family: var(--font-body);
+    }
+
+    /* right visual: stacked cards */
+    .mission-visual {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .m-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      transition: var(--transition-base);
+    }
+    .m-card:hover { border-color: var(--color-primary); transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .m-card__icon {
+      width: 48px; height: 48px;
+      background: rgba(26,86,240,0.08);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .m-card__icon svg { width: 22px; height: 22px; }
+    .m-card h4 {
+      font-family: var(--font-heading);
+      font-size: var(--text-md);
+      font-weight: var(--fw-bold);
+      color: var(--color-text);
+      text-transform: uppercase;
+      margin: 0 0 4px;
+    }
+    .m-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── TEAM SECTION ────────────────────────────── */
+    .team-section {
+      background: var(--color-secondary);
+      padding: var(--space-16) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,86,240,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,240,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .team-section .section-title { color: #fff; }
+    .team-section .section-label { color: var(--color-primary-light); }
+    .team-section .section-sub { color: rgba(255,255,255,0.5); }
+    .team-header {
+      text-align: center;
+      margin-bottom: var(--space-12);
+      position: relative;
+    }
+    .team-header .section-sub { max-width: 500px; margin: 0 auto; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+      position: relative;
+    }
+    .team-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-5);
+      align-items: flex-start;
+      transition: var(--transition-base);
+      backdrop-filter: blur(8px);
+    }
+    .team-card:hover {
+      border-color: rgba(26,86,240,0.5);
+      background: rgba(26,86,240,0.08);
+      transform: translateY(-3px);
+    }
+    .team-avatar {
+      width: 80px; height: 80px;
+      border-radius: var(--radius-xl);
+      border: 2px solid rgba(26,86,240,0.4);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(26,86,240,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .team-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .team-avatar-placeholder {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-extrabold);
+      color: var(--color-primary);
+    }
+    .team-info {}
+    .team-role {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary-light);
+      margin-bottom: 4px;
+    }
+    .team-name {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin: 0 0 var(--space-3);
+    }
+    .team-quote {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      font-style: italic;
+      border-left: 2px solid var(--color-primary);
+      padding-left: var(--space-3);
+    }
+
+    /* ── PARTNER CTA ─────────────────────────────── */
+    .partner-cta {
+      background: var(--color-white);
+      padding: var(--space-16) 0;
+    }
+    .partner-cta__inner {
+      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-mid) 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--space-12) var(--space-12);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-8);
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-cta__inner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(26,86,240,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .partner-cta h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: var(--fw-extrabold);
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin: 0 0 var(--space-3);
+    }
+    .partner-cta h2 span { color: var(--color-primary); }
+    .partner-cta p {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 520px;
+    }
+    .partner-cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      flex-shrink: 0;
+    }
+    .btn-primary-lg {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      background: var(--color-primary);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: var(--text-md);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: var(--transition-base);
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(26,86,240,.3);
+    }
+    .btn-primary-lg:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(26,86,240,.4); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1024px) {
+      .about-hero__inner { grid-template-columns: 1fr; }
+      .about-hero__visual { display: none; }
+      .mission-inner { grid-template-columns: 1fr; gap: var(--space-10); }
+      .team-grid { grid-template-columns: 1fr; }
+      .partner-cta__inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .about-hero { padding: var(--space-12) 0; }
+      .about-hero__stats { gap: var(--space-6); }
+      .mission-pillars { grid-template-columns: 1fr; }
+      .partner-cta__inner { padding: var(--space-8); }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- Hero Banner -->
+  <section class="about-hero">
+    <div class="about-hero__grid-lines"></div>
+    <div class="about-hero__inner">
+      <div class="about-hero__content">
+        <div class="about-hero__tag">Est. 2002 · Sialkot, Pakistan</div>
+        <h1 class="about-hero__title">
+          Built for <span>Champions</span>,<br>
+          Crafted for Brands.
+        </h1>
+        <p class="about-hero__desc">
+          For over two decades, we've been the force behind some of the best combat sports
+          and athleisure brands worldwide. You may not see our name on the gear — but you've
+          definitely felt the impact on the mats, in the ring, and in everyday wear.
+          <br><br>
+          At <strong>ProCombat</strong>, we don't just manufacture — we <strong>innovate</strong>,
+          <strong>customize</strong>, and <strong>perfect</strong>.
+        </p>
+        <div class="about-hero__stats">
+          <div class="stat-item">
+            <div class="stat-item__num">22+</div>
+            <div class="stat-item__label">Years Manufacturing</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num">50+</div>
+            <div class="stat-item__label">Countries Served</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num">ISO</div>
+            <div class="stat-item__label">Certified Quality</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-hero__visual">
+        <div class="hero-badge-row">
+          <div class="hero-badge">
+            <div class="hero-badge__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="hero-badge__text">
+              <strong>ISO Certified</strong>
+              <span>Quality assured</span>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <div class="hero-badge__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="hero-badge__text">
+              <strong>3–4 Weeks</strong>
+              <span>Lead time</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-badge-row">
+          <div class="hero-badge">
+            <div class="hero-badge__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="hero-badge__text">
+              <strong>Sialkot</strong>
+              <span>Manufacturing hub</span>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <div class="hero-badge__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <div class="hero-badge__text">
+              <strong>Worldwide</strong>
+              <span>Free shipping $150+</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-quote-card">
+          <p>"Where Quality Meets Precision — every order, every time."</p>
+          <span>— The ProCombat Promise</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="bc-bar">
+    <div class="bc-inner">
+      <nav class="bc">
+        <a href="/">Home</a>
+        <span class="sep">›</span>
+        <span>About Us</span>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- Mission Section -->
+    <section class="mission-strip">
+      <div class="pc-container">
+        <div class="mission-inner">
+          <div class="mission-content">
+            <p class="section-label">Who We Are</p>
+            <h2 class="section-title">More Than a<br><span>Manufacturer</span></h2>
+            <div class="mission-body">
+              <p>
+                We're here to elevate your brand with gear that speaks for itself. Whether you're
+                a startup looking for a production partner or an established brand needing consistent,
+                high-quality manufacturing — <strong>ProCombat is built for you</strong>.
+              </p>
+              <p>
+                From BJJ gis to MMA shorts, boxing gloves to athleisure wear — every product
+                leaves our Sialkot facility having been through rigorous quality checks,
+                expert craftsmanship, and your custom branding applied with precision.
+              </p>
+            </div>
+            <div class="mission-pillars">
+              <div class="pillar">
+                <strong>Innovate</strong>
+                <span>Pushing materials & methods forward</span>
+              </div>
+              <div class="pillar">
+                <strong>Customize</strong>
+                <span>Your logo, colors, specs — everything</span>
+              </div>
+              <div class="pillar">
+                <strong>Perfect</strong>
+                <span>ISO-certified quality at every stage</span>
+              </div>
+              <div class="pillar">
+                <strong>Deliver</strong>
+                <span>Fast, tracked, worldwide shipping</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mission-visual">
+            <div class="m-card">
+              <div class="m-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <h4>Your Long-Term Partner</h4>
+                <p>We build lasting relationships — not just transactions. Our team works as an extension of yours.</p>
+              </div>
+            </div>
+            <div class="m-card">
+              <div class="m-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div>
+                <h4>Full Custom Capability</h4>
+                <p>Logo embroidery, sublimation printing, custom cuts and sizing — unlimited revisions until perfect.</p>
+              </div>
+            </div>
+            <div class="m-card">
+              <div class="m-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+              </div>
+              <div>
+                <h4>Startup to Enterprise</h4>
+                <p>Small minimum orders to large-scale production runs — we scale with your brand's growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="pc-container">
+        <div class="team-header">
+          <p class="section-label">The Visionaries</p>
+          <h2 class="section-title">Meet the <span>Team</span></h2>
+          <p class="section-sub">The people behind every stitch, every design, and every partnership that makes ProCombat extraordinary.</p>
+        </div>
+        <div class="team-grid">
+
+          <div class="team-card">
+            <div class="team-avatar">
+              <div class="team-avatar-placeholder">A</div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Operations & Quality</div>
+              <div class="team-name">Aftab — The Perfectionist</div>
+              <p class="team-quote">"Excellence isn't a choice — it's the only way forward. If we're making something, it has to be the best."</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">
+              <div class="team-avatar-placeholder">A</div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Product & Innovation</div>
+              <div class="team-name">Afaq — The Edge</div>
+              <p class="team-quote">"What defines ProCombat isn't just what we make, but how we innovate — gear that empowers athletes and strengthens brands."</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">
+              <div class="team-avatar-placeholder">M</div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Strategy & Growth</div>
+              <div class="team-name">Mudassar — The Innovator</div>
+              <p class="team-quote">"Manufacturing isn't just about making products — it's about solving problems, pushing boundaries, and building partnerships that last."</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">
+              <div class="team-avatar-placeholder">A</div>
+            </div>
+            <div class="team-info">
+              <div class="team-role">Design & Creative</div>
+              <div class="team-name">Anzila — The Creative Force</div>
+              <p class="team-quote">"Every stitch tells a story of effort, discipline, and confidence. That's what I want every athlete to feel when they wear our gear."</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner CTA -->
+    <section class="partner-cta">
+      <div class="pc-container">
+        <div class="partner-cta__inner">
+          <div>
+            <h2>Let's Create Something <span>Extraordinary</span></h2>
+            <p>Contact us today and let's bring your vision to life. From design consultation to worldwide delivery — ProCombat handles it all.</p>
+          </div>
+          <div class="partner-cta__actions">
+            <a href="contact.html" class="btn-primary-lg">Get a Quote →</a>
+            <a href="pages/procombat-difference.html" class="btn-ghost">Our Process</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module">
+import Header from '../components/header.js';
+import Footer from '../components/footer.js';
+Header.init('body');
+Footer.init('body');
+document.title = 'About Us — ProCombat';
+</script>
+</body>
+</html>
