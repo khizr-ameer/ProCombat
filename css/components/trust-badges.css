@@ -150,7 +150,7 @@
 .pc-why__icon {
   width: 52px;
   height: 52px;
-  background: rgba(200,16,46,0.08);
+  background: rgba(26, 86, 240, 0.12);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
