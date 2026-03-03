@@ -140,8 +140,15 @@ const Header = (() => {
         <div class="pc-drawer__overlay" id="pcDrawerOverlay"></div>
         <nav class="pc-drawer__panel">
           <div class="pc-drawer__header">
-            <a href="/" class="pc-drawer__logo">
-              <span class="pc-logo__pro">PRO</span><span class="pc-logo__combat">COMBAT</span>
+            <a href="/" class="pc-drawer__logo" aria-label="ProCombat Home">
+              <img
+                src="/assets/images/Procombat LOGO BADGE_b&w.jpg"
+                alt="ProCombat"
+                class="pc-drawer__logo__img"
+              />
+              <span class="pc-drawer__logo__text">
+                <span class="pc-logo__pro">PRO</span><span class="pc-logo__combat">COMBAT</span>
+              </span>
             </a>
             <button class="pc-drawer__close" id="pcDrawerClose" aria-label="Close menu">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -168,7 +175,14 @@ const Header = (() => {
 
               <!-- Logo -->
               <a href="/" class="pc-logo" aria-label="ProCombat Home">
-                <span class="pc-logo__pro">PRO</span><span class="pc-logo__combat">COMBAT</span>
+                <img
+                  src="/assets/images/Procombat LOGO BADGE_b&w.jpg"
+                  alt="ProCombat"
+                  class="pc-logo__img"
+                />
+                <span class="pc-logo__text">
+                  <span class="pc-logo__pro">PRO</span><span class="pc-logo__combat">COMBAT</span>
+                </span>
               </a>
 
               <!-- Desktop Nav -->
@@ -206,7 +220,6 @@ const Header = (() => {
     const closeBtn  = document.getElementById('pcDrawerClose');
     const header    = document.getElementById('pcHeader');
 
-    // Mobile drawer open/close
     function openDrawer() {
       drawer.classList.add('is-open');
       drawer.setAttribute('aria-hidden', 'false');
@@ -227,7 +240,6 @@ const Header = (() => {
     closeBtn.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
 
-    // Mobile accordion toggles
     document.querySelectorAll('.pc-drawer__toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.pc-drawer__item');
@@ -238,7 +250,6 @@ const Header = (() => {
       });
     });
 
-    // Sticky header on scroll
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const current = window.scrollY;
@@ -247,7 +258,6 @@ const Header = (() => {
       } else {
         header.classList.remove('is-sticky');
       }
-      // Hide on scroll down, show on scroll up
       if (current > lastScroll && current > 200) {
         header.classList.add('is-hidden');
       } else {
@@ -256,7 +266,6 @@ const Header = (() => {
       lastScroll = current;
     }, { passive: true });
 
-    // Close mega/dropdown on Escape
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeDrawer();
     });
@@ -266,8 +275,6 @@ const Header = (() => {
   function init(mountSelector = 'body') {
     const mount = document.querySelector(mountSelector);
     if (!mount) return console.warn('Header: mount not found');
-
-    // Insert header before first child
     mount.insertAdjacentHTML('afterbegin', buildHTML());
     bindEvents();
   }
