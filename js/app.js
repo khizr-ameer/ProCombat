@@ -121,8 +121,13 @@ function initCarousel() {
   const track = document.getElementById('pcProductCarousel');
   if (!track) return;
 
+  /* ── FIX: build href + categoryHref for each product ── */
   FEATURED_PRODUCTS.forEach((p, i) => {
-    const card = ProductCard(p);
+    const card = ProductCard({
+      ...p,
+      href:         `/pages/product-detail.html?id=${p.id}`,
+      categoryHref: `/pages/products.html?cat=${p.category}`,
+    });
     card.dataset.cardIdx = i;
     track.appendChild(card);
   });
