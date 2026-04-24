@@ -13,7 +13,7 @@ const SLIDES = [
     ctaSecondary: { label: 'Get a Quote', href: '/pages/contact.html' },
     badgeValue: '22+',
     badgeLabel: 'Years of Excellence',
-    video: '//www.prosafetywear.com/wp-content/uploads/2024/12/PS.mp4',
+    video: '../assets/PS - Trim.mp4',
     videoPoster: '//www.prosafetywear.com/new/wp-content/uploads/revslider/video-media/PS_31.jpeg'
   },
   {
@@ -254,7 +254,7 @@ const HeroBanner = (() => {
         });
       });
     }
-    timer = setInterval(() => goTo(current + 1), 5000);
+    timer = setInterval(() => goTo(current + 1), 7000);
   }
 
   function bindEvents() {
